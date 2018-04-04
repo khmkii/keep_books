@@ -1,3 +1,13 @@
 from django.db import models
 
-# Create your models here.
+
+class Account(models.Model):
+    pass
+
+
+class Journal(models.Model):
+    pass
+
+
+class Posting(models.Model):
+    pass
