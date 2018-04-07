@@ -18,8 +18,14 @@ class BaseAccountModel(models.Model):
         return super(BaseAccountModel, self).save(*args, **kwargs)
 
 
-class Account(BaseAccountModel):
+class AssetType(BaseAccountModel):
     pass
+
+
+class Account(BaseAccountModel):
+    code = models.IntegerField()
+    name = models.CharField()
+    type = models.IntegerField()
 
 
 class Journal(BaseAccountModel):
