@@ -33,4 +33,7 @@ class Journal(BaseAccountModel):
 
 
 class Posting(BaseAccountModel):
-    pass
+    account_id = models.ForeignKey(to=Account, on_delete=models.PROTECT)
+    # one-to-one or many-to-one ?journal_id = models.ForeignKey(to=Journal, related_name=)
+    asset_type = models.ForeignKey(to=AssetType, on_delete=models.PROTECT)
+    amount = models.DecimalField(decimal_places=2, max_digits=12)
