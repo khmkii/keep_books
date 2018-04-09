@@ -13,3 +13,12 @@ ACCOUNT_TYPE = (
     (LIABILITY, 'Liability'),
     (EQUITY, 'Equity')
 )
+
+GBP = 0
+USD = 1
+
+
+ASSET_TYPE = (
+    (GBP, '£'),
+    (USD, '$')
+)
