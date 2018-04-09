@@ -6,6 +6,9 @@ class BaseAccountModel(models.Model):
     creation_timestamp = models.DateTimeField(editable=False)
     modified_timestamp = models.DateTimeField()
 
+    class Meta:
+        abstract = True
+
     def save(self, *args, **kwargs):
         """
         On save update modified timestamp, and set creation timestamp if row does not exist
@@ -24,7 +27,7 @@ class AssetType(BaseAccountModel):
 
 class Account(BaseAccountModel):
     code = models.IntegerField()
-    name = models.CharField()
+    name = models.CharField(max_length=100)
     type = models.IntegerField()
 
 
