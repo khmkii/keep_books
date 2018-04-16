@@ -1,6 +1,8 @@
 from django.db import models
 from django.utils import timezone
 
+from .choices import ACCOUNT_TYPE, ASSET_TYPE
+
 
 class BaseAccountModel(models.Model):
     creation_timestamp = models.DateTimeField(editable=False)
@@ -22,13 +24,13 @@ class BaseAccountModel(models.Model):
 
 
 class AssetType(BaseAccountModel):
-    pass
+    asset_type = models.IntegerField(choices=ASSET_TYPE)
 
 
 class Account(BaseAccountModel):
     code = models.IntegerField()
     name = models.CharField(max_length=100)
-    type = models.IntegerField()
+    type = models.IntegerField(choices=ACCOUNT_TYPE)
 
 
 class Journal(BaseAccountModel):
