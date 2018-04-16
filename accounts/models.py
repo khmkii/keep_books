@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-from .choices import ACCOUNT_TYPE, ASSET_TYPE
+from .choices import ACCOUNT_TYPE, ACCOUNT_SUBTYPE, ACTION, ASSET_TYPE, PERIOD_CHOICES
 
 
 class BaseAccountModel(models.Model):
@@ -28,17 +28,23 @@ class AssetType(BaseAccountModel):
 
 
 class Account(BaseAccountModel):
-    code = models.IntegerField()
-    name = models.CharField(max_length=100)
-    type = models.IntegerField(choices=ACCOUNT_TYPE)
+    account_code = models.IntegerField()
+    account_name = models.CharField(max_length=100)
+    account_type = models.IntegerField(choices=ACCOUNT_TYPE)
+    account_subtype = models.IntegerField(choices=ACCOUNT_SUBTYPE)
 
 
 class Journal(BaseAccountModel):
-    pass
+    transaction_date = models.DateField(default=timezone.now)
+    transaction_amount = models.DecimalField(decimal_places=2, max_digits=12)
+    action = models.IntegerField(choices=ACTION)
+    description = models.CharField(max_length=150, default='')
+    transaction_reference = models.CharField(max_length=150, default='')
 
 
 class Posting(BaseAccountModel):
     account_id = models.ForeignKey(to=Account, on_delete=models.PROTECT)
-    # one-to-one or many-to-one ?journal_id = models.ForeignKey(to=Journal, related_name=)
+    journal_id = models.ForeignKey(to=Journal, on_delete=models.PROTECT)
     asset_type = models.ForeignKey(to=AssetType, on_delete=models.PROTECT)
     amount = models.DecimalField(decimal_places=2, max_digits=12)
+    accounting_period = models.IntegerField(choices=PERIOD_CHOICES)
