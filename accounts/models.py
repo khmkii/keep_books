@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-from .choices import ACCOUNT_TYPE, ACCOUNT_SUBTYPE, ACTION, ASSET_TYPE, PERIOD_CHOICES
+from accounts.choices import ACCOUNT_TYPE, ACCOUNT_SUBTYPE, ACTION, ASSET_TYPE, PERIOD_CHOICES
 
 
 class BaseAccountModel(models.Model):
@@ -48,3 +48,5 @@ class Posting(BaseAccountModel):
     asset_type = models.ForeignKey(to=AssetType, on_delete=models.PROTECT)
     amount = models.DecimalField(decimal_places=2, max_digits=12)
     accounting_period = models.IntegerField(choices=PERIOD_CHOICES)
+
+# business segment? optional, usefull for later
