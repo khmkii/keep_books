@@ -1,23 +1,11 @@
-from django.forms import ModelForm, formsets
+from django.forms import BaseModelFormSet
 from accounts.models import Journal
 
 
-class JournalForm(ModelForm):
-
-    class Meta:
-        model = Journal
-        fields = [
-            'transaction_date',
-            'transaction_reference',
-            'description'
-            'transaction_amount',
-            'action',
-        ]
-
-
-class BaseJournalFormSet(formsets.BaseFormSet):
+class BaseJournalFormSet(BaseModelFormSet):
 
     def clean(self):
+        super().clean()
         if any(self.errors):
             return
 
