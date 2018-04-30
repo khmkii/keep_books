@@ -1,0 +1,20 @@
+{% extends '_layout.html' %}
+
+{% block body_content %}
+    <body>
+    {% if messages %}
+        {% for message in messages %}
+            <div>{{ message.text }}</div>
+        {% endfor %}
+    {% endif %}
+    <div class="login-page-main-container">
+        <div class="login-page-form">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+</body>
+{% endblock body_content %}

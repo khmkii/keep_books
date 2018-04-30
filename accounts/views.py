@@ -12,7 +12,7 @@ class AccountsHomeView(LoginRequiredMixin, TemplateView):
     template_name = 'accounts/accounts_home.html'
 
 
-class JournalEntryView(View):
+class JournalEntryView(LoginRequiredMixin, View):
     JournalFormset = modelformset_factory(
             model=Journal,
             fields=(
