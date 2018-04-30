@@ -2,10 +2,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.forms import modelformset_factory
 from django.http import HttpResponse
 from django.shortcuts import render
-from django.views.generic import View
+from django.views.generic import TemplateView, View
 
 from accounts.forms import BaseJournalFormSet
 from accounts.models import Journal
+
+
+class AccountsHomeView(LoginRequiredMixin, TemplateView):
+    template_name = 'accounts/accounts_home.html'
 
 
 class JournalEntryView(View):

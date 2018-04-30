@@ -4,20 +4,20 @@ from .models import Account, AssetType, Journal, Posting
 
 
 @admin.register(Account)
-class SalesContractAdmin(admin.ModelAdmin):
+class AccountAdmin(admin.ModelAdmin):
     pass
 
 
 @admin.register(AssetType)
-class SalesContractAdmin(admin.ModelAdmin):
+class AssetTypeAdmin(admin.ModelAdmin):
     pass
 
 
 @admin.register(Journal)
-class SalesContractAdmin(admin.ModelAdmin):
+class JournalAdmin(admin.ModelAdmin):
     pass
 
 
 @admin.register(Posting)
-class SalesContractAdmin(admin.ModelAdmin):
+class PostingAdmin(admin.ModelAdmin):
     pass
