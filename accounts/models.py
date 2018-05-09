@@ -32,6 +32,7 @@ class Account(BaseAccountModel):
     account_name = models.CharField(max_length=100)
     account_type = models.IntegerField(choices=ACCOUNT_TYPE)
     account_subtype = models.IntegerField(choices=ACCOUNT_SUBTYPE)
+    asset_type = models.ForeignKey(to=AssetType, on_delete=models.PROTECT, default=0)
 
 
 class Journal(BaseAccountModel):
@@ -40,13 +41,15 @@ class Journal(BaseAccountModel):
     action = models.IntegerField(choices=ACTION)
     description = models.CharField(max_length=150, default='')
     transaction_reference = models.CharField(max_length=150, default='')
+    posted = models.BooleanField(default=False)
+    uuid = models.CharField(default='', max_length=36)
 
 
 class Posting(BaseAccountModel):
     account_id = models.ForeignKey(to=Account, on_delete=models.PROTECT)
     journal_id = models.ForeignKey(to=Journal, on_delete=models.PROTECT)
-    asset_type = models.ForeignKey(to=AssetType, on_delete=models.PROTECT)
     amount = models.DecimalField(decimal_places=2, max_digits=12)
     accounting_period = models.IntegerField(choices=PERIOD_CHOICES)
+    asset_type = models.ForeignKey(to=AssetType, on_delete=models.PROTECT, default=0)
 
 # business segment? optional, usefull for later
