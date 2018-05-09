@@ -1,10 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "_layout.html" %}
+
+{% block body_content %}
+    {% for account in accounts %}
+        <li>
+            <a href="#">{{ account.name }}</a>
+        </li>
+    {% empty %}
+        <li>No accounts yet.</li>
+    {% endfor %}
+{% endblock body_content %}

@@ -1,2 +1,10 @@
 {% extends "_layout.html" %}
 
+{% block body_content %}
+    <h2>
+        <a href="{% url 'accounts:journal_entry' %}">Journal Entry</a>
+    </h2>
+    <h2>
+        <a href="{% url 'accounts:accounts_list' %}">Accounts List</a>
+    </h2>
+{% endblock body_content %}
