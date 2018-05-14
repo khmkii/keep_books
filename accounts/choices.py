@@ -6,6 +6,7 @@ ASSET = 2
 REVENUE = 3
 LIABILITY = 4
 EQUITY = 5
+CONTRA_ASSET = 6
 
 ACCOUNT_TYPE = (
     (PURCHASE, 'Purchase'),
@@ -13,7 +14,8 @@ ACCOUNT_TYPE = (
     (ASSET, 'Asset'),
     (REVENUE, 'Revenue'),
     (LIABILITY, 'Liability'),
-    (EQUITY, 'Equity')
+    (EQUITY, 'Equity'),
+    (CONTRA_ASSET, 'Contra-Asset')
 )
 
 ACCOUNTS_RECEIVABLE = 0
@@ -22,14 +24,6 @@ ACCOUNTS_PAYABLE = 1
 ACCOUNT_SUBTYPE = (
     (ACCOUNTS_RECEIVABLE, 'accounts receivable'),
     (ACCOUNTS_PAYABLE, 'accounts payable')
-)
-
-DEBIT = 0
-CREDIT = 1
-
-ACTION = (
-    (DEBIT, 'debit'),
-    (CREDIT, 'credit')
 )
 
 GBP = 0

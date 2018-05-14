@@ -27,11 +27,10 @@ class JournalEntryView(LoginRequiredMixin, View):
     JournalFormset = modelformset_factory(
             model=Journal,
             fields=(
-               'transaction_date',
+                'transaction_date',
                 'transaction_reference',
                 'description',
                 'transaction_amount',
-                'action',
             ),
             formset=BaseJournalFormSet,
             max_num=25,
