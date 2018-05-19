@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 
-from accounts.choices import ACCOUNT_TYPE, ACCOUNT_SUBTYPE, ASSET_TYPE, PERIOD_CHOICES
+from accounts.choices import ACCOUNT_TYPE, ACCOUNT_SUBTYPE, ACTIONS, ASSET_TYPE, PERIOD_CHOICES
 
 
 class BaseAccountModel(models.Model):
@@ -38,11 +38,10 @@ class Account(BaseAccountModel):
 class Journal(BaseAccountModel):
     transaction_date = models.DateField(default=timezone.now)
     transaction_amount = models.DecimalField(decimal_places=2, max_digits=12)
-    credit_account = models.ForeignKey(to=Account, on_delete=models.PROTECT, related_name='credits')
-    debit_account = models.ForeignKey(to=Account, on_delete=models.PROTECT, related_name='debits')
+    action = models.IntegerField(choices=ACTIONS)
+    account = models.ForeignKey(to=Account, on_delete=models.PROTECT)
     description = models.CharField(max_length=150, default='')
     transaction_reference = models.CharField(max_length=150, default='')
-    authorised = models.BooleanField(default=False)
     uuid = models.CharField(default='', max_length=36)
 
 

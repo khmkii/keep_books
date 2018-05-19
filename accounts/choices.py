@@ -36,3 +36,11 @@ ASSET_TYPE = (
 )
 
 PERIOD_CHOICES = [(e, y) for e, y in enumerate(range(2014, datetime.datetime.now().year + 1))]
+
+DEBIT = 0
+CREDIIT = 1
+
+ACTIONS = (
+    (DEBIT, 'debit'),
+    (CREDIIT, 'credit')
+)
