@@ -47,7 +47,7 @@ class Journal(BaseAccountModel):
 
 class Posting(BaseAccountModel):
     account_id = models.ForeignKey(to=Account, on_delete=models.PROTECT)
-    journal_id = models.ForeignKey(to=Journal, on_delete=models.PROTECT)
+    batch_reference = models.CharField(default='', max_length=36)
     amount = models.DecimalField(decimal_places=2, max_digits=12)
     accounting_period = models.IntegerField(choices=PERIOD_CHOICES)
     asset_type = models.ForeignKey(to=AssetType, on_delete=models.PROTECT, default=0)
